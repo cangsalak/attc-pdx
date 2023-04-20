@@ -49,7 +49,7 @@
         <div class="table-responsive">
           <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
-              <tr>
+              <tr class="text-center">
                                     <th><?=cclang("Id")?></th>
                                       <th><?=cclang("User")?></th>
                                       <th><?=cclang("Ip address")?></th>

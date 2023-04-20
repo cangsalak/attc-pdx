@@ -80,7 +80,7 @@
         <div class="table-responsive">
           <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
-              <tr>
+              <tr class="text-center">
                 <?php $show_in_table = $this->mcrud_build->showInTable(true);
                   foreach ($show_in_table as $field):?>
                     <th>{php_open_tag_echo}cclang("<?=$field?>"){php_close_tag}</th>
