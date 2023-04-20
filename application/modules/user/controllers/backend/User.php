@@ -42,36 +42,35 @@ class User extends Backend{
       $data = array();
       // $no = $_POST['start'];
       foreach ($list as $rows) {
-          $row = array();
-          $row[] = imgView($rows->photo);
-          $row[] = $rows->name;
-          $row[] = $rows->email;
-          $row[] = $rows->group == "" ? '<i>Null</i>':ucfirst($rows->group);
-          $row[] = $rows->is_active == 1 ? '<i class="mdi mdi-eye text-success"></i> Y' : '<i class="mdi mdi-eye-off text-danger"></i> N';
-          $row[] = $rows->created == "" ? "null":date("d/m/Y H:i",strtotime($rows->created));
-          $row[] = $rows->last_login == "" ? "null":date("d/m/Y H:i",strtotime($rows->last_login));
-          $row[] = '
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="'.url("user/view/".enc_url($rows->id_user)).'" id="view" class="btn btn-primary" title="'.cclang("detail").'">
-                          <i class="ti-file"></i>
-                        </a>
-                        <a href="'.url("user/update/".enc_url($rows->id_user)).'" id="edit" class="btn btn-warning" title="'.cclang("update").'">
-                          <i class="ti-pencil"></i>
-                        </a>
-                        <a href="'.url("user/delete/".enc_url($rows->id_user)).'" '.($rows->id_user == 1 ? "style='display:none'":"").' id="delete" class="btn btn-danger" title="'.cclang("delete").'">
-                          <i class="ti-trash"></i>
-                        </a>
-                      </div>
-                   ';
-          $data[] = $row;
+        $row = array();
+        $row[] = imgView($rows->photo);
+        $row[] = $rows->name;
+        $row[] = $rows->email;
+        $row[] = $rows->group == "" ? '<i>Null</i>':ucfirst($rows->group);
+        $row[] = $rows->is_active == 1 ? '<i class="mdi mdi-eye text-success"></i>'.cclang('Yes') : '<i class="mdi mdi-eye-off text-danger"></i>'.cclang('No');
+        $row[] = $rows->created == "" ? "null":date("d/m/Y H:i",strtotime($rows->created));
+        $row[] = $rows->last_login == "" ? "null":date("d/m/Y H:i",strtotime($rows->last_login));
+        $row[] = '
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                      <a href="'.url("user/view/".enc_url($rows->id_user)).'" id="view" class="btn btn-primary" title="'.cclang("detail").'">
+                        <i class="ti-file"></i>
+                      </a>
+                      <a href="'.url("user/update/".enc_url($rows->id_user)).'" id="edit" class="btn btn-warning" title="'.cclang("update").'">
+                        <i class="ti-pencil"></i>
+                      </a>
+                      <a href="'.url("user/delete/".enc_url($rows->id_user)).'" '.($rows->id_user == 1 ? "style='display:none'":"").' id="delete" class="btn btn-danger" title="'.cclang("delete").'">
+                        <i class="ti-trash"></i>
+                      </a>
+                    </div>
+                  ';
+        $data[] = $row;
       }
-
       $output = array(
-                      "draw" => $_POST['draw'],
-                      "recordsTotal" => $this->model->count_all(),
-                      "recordsFiltered" => $this->model->count_filtered(),
-                      "data" => $data,
-              );
+        "draw" => $_POST['draw'],
+        "recordsTotal" => $this->model->count_all(),
+        "recordsFiltered" => $this->model->count_filtered(),
+        "data" => $data,
+      );
       //output to json format
       return $this->response($output);
     }
@@ -120,7 +119,6 @@ function add_action()
       show_error("Access Permission", 403,'403::Access Not Permission');
       exit();
     }
-
         $json = array('success'=>false, 'alert'=>array());
         $this->_rules();
         if ($this->form_validation->run()) {
