@@ -43,4 +43,3 @@
   </div>
 </div>
 
-<?=system_info();?>

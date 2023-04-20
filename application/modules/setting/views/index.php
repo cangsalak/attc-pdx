@@ -59,6 +59,18 @@
             </tr>
 
           </table>
+          <style>
+                  .div1 {
+                      align-self: center;
+                      margin-top:10px;
+                      margin-right:50%;
+                      width: 100%;
+                      height: 70px;    
+                      padding: 60px;
+                      background:<?=setting("color_theme")?>;
+                  }
+                </style>
+                  <div class="div1 text-center text-white"><p>ตัวอย่างสี</p></div>
         <?php else: ?>
           <?php $this->load->view("core/error403") ?>
         <?php endif; ?>
@@ -152,13 +164,24 @@
   			{value: 'DarkCyan', text: 'DarkCyan'},
   			{value: 'Aqua', text: 'Aqua'},
   			{value: 'SteelBlue', text: 'SteelBlue'},
-  			{value: 'SkyBlue', text: 'SkyBlue'}
+  			{value: 'SkyBlue', text: 'SkyBlue'},
+  			{value: 'Red', text: 'Red'},
+  			{value: 'FireBrick', text: 'FireBrick'},
+  			{value: 'HotPink', text: 'HotPink'},
+  			{value: 'OrangeRed', text: 'OrangeRed'},
+  			{value: 'Tomato', text: 'Tomato'},
+  			{value: 'Magenta', text: 'Magenta'},
+  			{value: 'DarkViolet', text: 'DarkViolet'},
+  			{value: 'Green', text: 'Green'},
+  			{value: 'LightSeaGreen', text: 'LightSeaGreen'},
+  			{value: 'LightCyan', text: 'LightCyan'},
+  			{value: 'black', text: 'black'}
   		],
       success: function(data) {
        if (data.success != true) {
          return data.msg;
        }
-     location.reload(); // แทรกฟังก์ชันเพื่อ refesh หน้าเว็บ
+      location.reload(); // แทรกฟังก์ชันเพื่อ refesh หน้าเว็บ
      }
     });
 

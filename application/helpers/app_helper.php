@@ -292,41 +292,79 @@ function system_info()
 
     // Get some basic server info
     $server_info = array(
-        'PHP Version' => phpversion(),
-        'Server IP' => $_SERVER['SERVER_ADDR'],
-        'Server Name' => $_SERVER['SERVER_NAME'],
-        'Server Software' => $_SERVER['SERVER_SOFTWARE'],
-        'Server Protocol' => $_SERVER['SERVER_PROTOCOL'],
-        'Request Method' => $_SERVER['REQUEST_METHOD'],
-        'Request URI' => $_SERVER['REQUEST_URI'],
-		'IP Address' => gethostbyname($_SERVER['HTTP_HOST'])
-		
-    );
+		'PHP Version' => phpversion(),
+		'Server IP' => $_SERVER['SERVER_ADDR'],
+		'Server Name' => $_SERVER['SERVER_NAME'],
+		'Server Software' => $_SERVER['SERVER_SOFTWARE'],
+		'Server Protocol' => $_SERVER['SERVER_PROTOCOL'],
+		'Request Method' => $_SERVER['REQUEST_METHOD'],
+		'IP Address' => gethostbyname($_SERVER['HTTP_HOST']),
+		'Server Administrator' => $_SERVER['SERVER_ADMIN'],
+		'Server Port' => $_SERVER['SERVER_PORT'],
+		'Document Root' => $_SERVER['DOCUMENT_ROOT'],
+		'Script Name' => $_SERVER['SCRIPT_NAME'],
+		'Script Filename' => $_SERVER['SCRIPT_FILENAME'],
+		'Gateway Interface' => $_SERVER['GATEWAY_INTERFACE'],
+		'HTTP Connection' => $_SERVER['HTTP_CONNECTION'],
+		'HTTP Accept' => $_SERVER['HTTP_ACCEPT'],
+		'HTTP Accept-Encoding' => $_SERVER['HTTP_ACCEPT_ENCODING'],
+		'HTTP Accept-Language' => $_SERVER['HTTP_ACCEPT_LANGUAGE'],
+		'HTTP User-Agent' => $_SERVER['HTTP_USER_AGENT'],
+		'Remote Address' => $_SERVER['REMOTE_ADDR'],
+		'Remote Port' => $_SERVER['REMOTE_PORT'],
+		'Session Save Path' => session_save_path(),
+		'Session ID' => session_id(),
+		'Session Name' => session_name(),
+	);
+
 
     // Get some basic CodeIgniter info
     $ci_info = array(
         'CI Version' => CI_VERSION,
         'CI Base URL' => base_url(),
-        'CI Index Page' => index_page(),
         'CI User Agent' => $CI->agent->agent_string(),
         'CI Language' => $CI->config->item('language'),
         'CI Timezone' => $CI->config->item('time_zone'),
-        'CI Session Driver' => $CI->config->item('sess_driver')
+        'CI Session Driver' => $CI->config->item('sess_driver'),
+
+        'Application' => $CI->config->item('app'),
+        'author' => $CI->config->item('author'),
+        'Version' => $CI->config->item('version'),
+        'facebook' => $CI->config->item('facebook'),
+        'fanspage' => $CI->config->item('fanspage'),
+        'youtube' => $CI->config->item('youtube'),
+        'website' => $CI->config->item('website'),
+
+        'url_suffix' => $CI->config->item('url_suffix'),
+        'language' => $CI->config->item('language'),
+        'charset' => $CI->config->item('charset'),
+        'log_date_format' => $CI->config->item('log_date_format'),
+        'encryption_key' => $CI->config->item('encryption_key'),
+        'encryption_url' => $CI->config->item('encryption_url'),
+        'rest_default_format' => $CI->config->item('rest_default_format'),
+        'rest_auth' => $CI->config->item('rest_auth'),
+        'rest_key_column' => $CI->config->item('rest_key_column'),
+        'rest_logs_table' => $CI->config->item('rest_logs_table'),
+        'rest_access_table' => $CI->config->item('rest_access_table')
     );
 
     // Output the information in a nicely formatted table
-    echo "<h2>Server Information</h2>";
-    echo "<table>";
+    echo "<h4>Server Information</h4>";
+    echo "<div class='table table-responsive'>";
+    echo "<table class='table-setting table-striped table-hover'>";
     foreach ($server_info as $key => $value) {
         echo "<tr><td>{$key}</td><td>{$value}</td></tr>";
     }
     echo "</table>";
-
-    echo "<h2>CodeIgniter Information</h2>";
-    echo "<table>";
+    echo "</div>";
+    echo "<br>";
+    echo "<h4>CodeIgniter Information</h4>";
+    echo "<div class='table table-responsive'>";
+    echo "<table class='table-setting table-striped table-hover'>";
     foreach ($ci_info as $key => $value) {
         echo "<tr><td>{$key}</td><td>{$value}</td></tr>";
     }
     echo "</table>";
+    echo "</div>";
 }
 }

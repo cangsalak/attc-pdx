@@ -8,13 +8,15 @@
           <div class="row">
             <?php if (is_allowed('config_system_info')): ?>
               <div class="col-sm-12">
-                
-<?=system_info();?>
+              <div class="card">
+                <div class="card-body">
+                  <?=system_info();?>
+                </div>
               </div>
+            </div>
             <?php endif; ?>
           </div>
         </div>
-
       </div>
     </div>
   </div>
