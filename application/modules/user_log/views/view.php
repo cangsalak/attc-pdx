@@ -7,27 +7,27 @@
       <div class="card-body">
         <table class="table table-bordered table-striped">
         <tr>
-          <td>User</td>
+          <td><?=cclang('User');?></td>
           <td><?=$user?></td>
         </tr>
         <tr>
-          <td>Ip address</td>
+          <td><?=cclang('Ip address');?></td>
           <td><?=$ip_address?></td>
         </tr>
         <tr>
-          <td>Controller</td>
+          <td><?=cclang('Controller');?></td>
           <td><?=$controller?></td>
         </tr>
         <tr>
-          <td>Url</td>
+          <td><?=cclang('Url');?></td>
           <td><?=$url?></td>
         </tr>
         <tr>
-          <td>Data</td>
+          <td><?=cclang('Data');?></td>
           <td><?=$data?></td>
         </tr>
         <tr>
-          <td>Created at</td>
+          <td><?=cclang('Created at');?></td>
           <td><?=$created_at != "" ? date('d-m-Y H:i',strtotime($created_at)):""?></td>
         </tr>
         </table>

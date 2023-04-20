@@ -21,7 +21,7 @@ class Mcrud extends Backend{
       "setting",
       "main_menu",
       "ci_user_login",
-      // "ci_user_log",
+      "ci_user_log",
       "ci_sessions",
       "auth_user",
       "auth_user_to_group",
@@ -162,8 +162,8 @@ class Mcrud extends Backend{
       }
       
       
-      $this->lang_generation(APPPATH . '/language/thailand/app_lang.php');
-      $this->lang_generation(APPPATH . '/language/english/app_lang.php');
+      $this->lang_generation(APPPATH . '/language/thailand/app_lang.php',$template_crud_path.'build_lang',$data);
+      $this->lang_generation(APPPATH . '/language/english/app_lang.php',$template_crud_path.'build_lang',$data);
         
 
         $insert = array('module' => $controllers,
@@ -194,7 +194,7 @@ class Mcrud extends Backend{
 
   }
   
-  function lang_generation($path)
+  function lang_generation2($path)
   {
     // ค้นหาบรรทัดว่างสุดในไฟล์ app_lang.php
     $file = $path;
@@ -206,10 +206,25 @@ class Mcrud extends Backend{
     substr($content, $last_line);
 
     // เขียนเนื้อหาใหม่ลงไฟล์ config.php
-    file_put_contents($file, $new_content);
+      file_put_contents($file, $new_content);
     
-    return true;
   }
+
+  function lang_generation($path, $template_crud_path, $data)
+{
+  // ค้นหาบรรทัดว่างสุดในไฟล์ app_lang.php
+  $file = $path;
+  $content = file_get_contents($file);
+  $last_line = strrpos($content, "\n") + 1;
+
+  // เพิ่มโค้ดสร้างไฟล์อัตโนมัติหลังบรรทัดสุดท้าย
+  $new_content = substr($content, 0, $last_line) . $this->parser->parse($template_crud_path, $data, true) . "\n" .
+  substr($content, $last_line);
+
+    // เขียนเนื้อหาใหม่ลงไฟล์ config.php
+      file_put_contents($file, $new_content);
+}
+
 
   function change_form_group($params = null)
   {
