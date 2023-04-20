@@ -21,7 +21,7 @@ class Mcrud extends Backend{
       "setting",
       "main_menu",
       "ci_user_login",
-      "ci_user_log",
+      // "ci_user_log",
       "ci_sessions",
       "auth_user",
       "auth_user_to_group",

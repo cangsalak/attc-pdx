@@ -20,6 +20,7 @@ class Filemanager extends Backend{
 		 );
 		parent::__construct($config);
     $this->load->model("Filemanager_model","model");
+		$this->load->helper('directory');
   }
 
   function _rules()

@@ -60,3 +60,17 @@ $lang['type_form'] = "Type form";
 $lang['cek_models'] = "Model must not match Controller";
 
 $lang['info_restore'] = 'Please backup the database first before restoring';
+
+
+
+  /*| -------------------------------------------------------------------------- |*/
+$lang['Id'] = 'Id';
+$lang['User'] = 'User';
+$lang['Ip address'] = 'Ip address';
+$lang['Controller'] = 'Controller';
+$lang['Url'] = 'Url';
+$lang['Data'] = 'Data';
+$lang['Created at'] = 'Created at';
+  /*| -------------------------------------------------------------------------- |*/
+  
+
