@@ -42,7 +42,10 @@
     *{
       font-family: 'Sarabun', sans-serif;
     }
-    .navbar .navbar-menu-wrapper, .card-header{
+    .navbar .navbar-brand-wrapper{
+      background: <?=$color_master;?>
+    }
+    .navbar .navbar-menu-wrapper, .card-header ,.footer {
       background: <?=$color_gen2;?>  /* fallback for old browsers */
       background: -webkit-linear-gradient(to right, <?=$color_master?>, <?=$color_gen?>, <?=$color_gen2;?>);  /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to right, <?=$color_master?>, <?=$color_gen?>, <?=$color_gen2;?>); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

@@ -1,11 +1,13 @@
 </div>
 <!-- content-wrapper ends -->
+<?php if(setting("show_footer")=='Y'):?>
 <footer class="footer">
   <div class="d-sm-flex justify-content-center justify-content-sm-between">
-    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Page rendered in <strong>{elapsed_time}</strong> seconds.<?=$this->config->item("author") ?> - <?=$this->config->item("version") ?> Copyright © <?=date("Y")?>. All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Page rendered in <strong>{elapsed_time}</strong> seconds. App Name: <?=$this->config->item("app") ?> - <?=$this->config->item("version") ?> Copyright © <?=date("Y")?>. All rights reserved.</span>
+    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">สร้างด้วยมือ && ทำด้วย <i class="ti-heart text-danger ml-1"></i></span>
   </div>
 </footer>
+<?php endif;?>
 <!-- partial -->
 </div>
 <!-- main-panel ends -->

@@ -58,6 +58,13 @@
               </td>
             </tr>
 
+            <tr>
+            <td class="table-title"><?=cclang("Show Footer")?></td>
+            <td>
+              <a href="javascript:void(0);" id="show_footer" data-url="<?=url("setting/update_action")?>" data-type="select" data-value="<?=setting('show_footer')?>" data-pk="63" class="editable editable-click" title="<?=cclang("update")?>"><?=setting('show_footer') == 'Y' ? cclang('Yes'):cclang('No')?></a>
+            </td>
+          </tr>
+
           </table>
           <style>
                   .div1 {
@@ -176,6 +183,20 @@
   			{value: 'LightSeaGreen', text: 'LightSeaGreen'},
   			{value: 'LightCyan', text: 'LightCyan'},
   			{value: 'black', text: 'black'}
+  		],
+      success: function(data) {
+       if (data.success != true) {
+         return data.msg;
+       }
+      location.reload(); // แทรกฟังก์ชันเพื่อ refesh หน้าเว็บ
+     }
+    });
+
+    $('#show_footer').editable({
+      inputclass: 'form-control-sm',
+      source: [
+  			{value: 'Y', text: '<?=cclang('Yes')?>'},
+  			{value: 'N', text: '<?=cclang('No')?>'}
   		],
       success: function(data) {
        if (data.success != true) {
