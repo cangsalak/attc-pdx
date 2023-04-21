@@ -34,7 +34,7 @@
     $blue = mt_rand(0, 255);
 
     $color_gen2 = sprintf("#%02x%02x%02x", $red, $green, $blue); 
-    $color_gen = 'transparent'; 
+    $transparent = '#fff'; 
     $color = substr(md5(setting("color_theme")), 0, 6); // Get the first 6 characters of the MD5 hash
     $color_master = setting("color_theme"); // Get the first 6 characters of the MD5 hash
   ?>
@@ -47,8 +47,8 @@
     }
     .navbar .navbar-menu-wrapper, .card-header ,.footer {
       background: <?=$color_gen2;?>  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to right, <?=$color_master?>, <?=$color_gen?>, <?=$color_gen2;?>);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to right, <?=$color_master?>, <?=$color_gen?>, <?=$color_gen2;?>); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: -webkit-linear-gradient(to right, <?=$color_master?>, <?=$transparent?>, <?=$color_gen2;?>);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, <?=$color_master?>, <?=$transparent?>, <?=$color_gen2;?>); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
     .sidebar .nav .nav-item.active > .nav-link i, .sidebar .nav .nav-item.active > .nav-link .menu-title, .sidebar .nav .nav-item.active > .nav-link .menu-arrow {
       color: <?=$color_master?>;
