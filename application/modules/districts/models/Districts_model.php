@@ -8,7 +8,7 @@
 /*| instagram : # */
 /*| youtube : https://www.youtube.com/channel/UCQMpYmqbXlUBEJ_z3XPupdA */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 24/04/2023 10:13*/
+/*| Generate By M-CRUD Generator 24/04/2023 11:02*/
 /*| Please DO NOT modify this information*/
 
 
@@ -16,9 +16,9 @@ class Districts_model extends MY_Model{
 
   private $table        = "districts";
   private $primary_key  = "id";
-  private $column_order = array('id', 'zip_code', 'name_th', 'name_en', 'amphure_id');
-  private $order        = array('districts.id'=>"DESC");
-  private $select       = "districts.id,districts.id,districts.zip_code,districts.name_th,districts.name_en,districts.amphure_id";
+  private $column_order = array('id', 'name_th_d', 'name_en_d', 'amphure_id');
+  private $order        = array('districts.id'=>"ASC");
+  private $select       = "districts.id,districts.id,districts.name_th_d,districts.name_en_d,districts.amphure_id";
 
 public function __construct()
 	{
@@ -44,14 +44,14 @@ public function __construct()
           $this->db->like("districts.zip_code", $this->input->post("zip_code"));
         }
 
-    if($this->input->post("name_th"))
+    if($this->input->post("name_th_d"))
         {
-          $this->db->like("districts.name_th", $this->input->post("name_th"));
+          $this->db->like("districts.name_th_d", $this->input->post("name_th_d"));
         }
 
-    if($this->input->post("name_en"))
+    if($this->input->post("name_en_d"))
         {
-          $this->db->like("districts.name_en", $this->input->post("name_en"));
+          $this->db->like("districts.name_en_d", $this->input->post("name_en_d"));
         }
 
     if($this->input->post("amphure_id"))
@@ -98,7 +98,7 @@ public function __construct()
 
     public function _get_join()
     {
-      $this->db->select("amphures.name_th");
+      $this->db->select("amphures.name_th_A");
       $this->db->join("amphures","amphures.id = districts.amphure_id","left");
     }
 

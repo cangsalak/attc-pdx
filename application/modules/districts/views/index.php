@@ -14,15 +14,15 @@
         <form autocomplete="off" class="content-filter">
           <div class="row">
             <div class="form-group col-md-6">
-              <input type="text" id="zip_code" class="form-control form-control-sm" placeholder="รหัสไปรษณีย์" />
+              <input type="text" id="zip_code" class="form-control form-control-sm" placeholder="Zip code" />
             </div>
 
             <div class="form-group col-md-6">
-              <input type="text" id="name_th" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" />
+              <input type="text" id="name_th_d" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" />
             </div>
 
             <div class="form-group col-md-6">
-              <input type="text" id="name_en" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" />
+              <input type="text" id="name_en_d" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" />
             </div>
 
             <div class="form-group col-md-6">
@@ -30,7 +30,7 @@
                           app_helper.php - methode is_select
                           is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
                         --->
-                <?=is_select_filter("amphures","amphure_id","id","name_th","อำเภอ");?>
+                <?=is_select_filter("amphures","amphure_id","id","name_th_A","อำเภอ");?>
             </div>
 
             <div class="col-md-12">
@@ -43,8 +43,7 @@
           <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
               <tr class="text-center">
-                                    <th><?=cclang("ลำดับ")?></th>
-                                      <th><?=cclang("รหัสไปรษณีย์")?></th>
+                                    <th><?=cclang("Id")?></th>
                                       <th><?=cclang("ชื่อภาษาไทย")?></th>
                                       <th><?=cclang("ชื่อภาษาอังกฤษ")?></th>
                                       <th><?=cclang("อำเภอ")?></th>
@@ -86,8 +85,8 @@ var table;
           "type": "POST",
           "data":function(data){
               data.zip_code = $("#zip_code").val();
-              data.name_th = $("#name_th").val();
-              data.name_en = $("#name_en").val();
+              data.name_th_d = $("#name_th_d").val();
+              data.name_en_d = $("#name_en_d").val();
               data.amphure_id = $("#amphure_id").val();
               }
             },
@@ -115,23 +114,18 @@ var table;
             "orderable": false
           },
 
-					{
-            "targets": 4,
-            "orderable": false
-          },
-
         {
             "className": "text-center",
             "orderable": false,
-            "targets": 5
+            "targets": 4
         },
       ],
     });
 
   $("#reload").click(function(){
   $("#zip_code").val("");
-  $("#name_th").val("");
-  $("#name_en").val("");
+  $("#name_th_d").val("");
+  $("#name_en_d").val("");
   $("#amphure_id").val("");
   table.ajax.reload();
   });

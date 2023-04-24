@@ -7,13 +7,13 @@
 /*| website : https://1.20.167.69/ */
 /*| youtube : https://www.youtube.com/channel/UCQMpYmqbXlUBEJ_z3XPupdA */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By cangsalak Generator 24/04/2023 09:58*/
+/*| Generate By cangsalak Generator 24/04/2023 11:10*/
 /*| Please DO NOT modify this information*/
 
 
 class Provinces extends Backend{
 
-private $title = "Provinces";
+private $title = "จังหวัด";
 
 
 public function __construct()
@@ -45,14 +45,18 @@ function json()
     foreach ($list as $row) {
         $rows = array();
                 $rows[] = $row->id;
-                $rows[] = $row->name_th;
-                $rows[] = $row->name_en;
+                $rows[] = $row->code;
+                $rows[] = $row->name_th_p;
+                $rows[] = $row->name_en_p;
                 $rows[] = $row->name;
         
         $rows[] = '
                   <div class="btn-group" role="group" aria-label="Basic example">
                       <a href="'.url("provinces/detail/".enc_url($row->id)).'" id="detail" class="btn btn-primary" title="'.cclang("detail").'">
                         <i class="mdi mdi-file"></i>
+                      </a>
+                      <a href="'.url("provinces/update/".enc_url($row->id)).'" id="update" class="btn btn-warning" title="'.cclang("update").'">
+                        <i class="ti-pencil"></i>
                       </a>
                       <a href="'.url("provinces/delete/".enc_url($row->id)).'" id="delete" class="btn btn-danger" title="'.cclang("delete").'">
                         <i class="ti-trash"></i>
@@ -91,8 +95,8 @@ function detail($id)
     $this->template->set_title("Detail ".$this->title);
     $data = array(
           "code" => $row->code,
-          "name_th" => $row->name_th,
-          "name_en" => $row->name_en,
+          "name_th_p" => $row->name_th_p,
+          "name_en_p" => $row->name_en_p,
           "geography_id" => $row->name,
     );
     $this->template->view("view",$data);
@@ -101,7 +105,108 @@ function detail($id)
   }
 }
 
+function add()
+{
+  $this->is_allowed('provinces_add');
+  $this->template->set_title(cclang("add")." ".$this->title);
+  $data = array('action' => url("provinces/add_action"),
+                  'code' => set_value("code"),
+                  'name_th_p' => set_value("name_th_p"),
+                  'name_en_p' => set_value("name_en_p"),
+                  'geography_id' => set_value("geography_id"),
+                  );
+  $this->template->view("add",$data);
+}
 
+function add_action()
+{
+  if($this->input->is_ajax_request()){
+    if (!is_allowed('provinces_add')) {
+      show_error("Access Permission", 403,'403::Access Not Permission');
+      exit();
+    }
+
+    $json = array('success' => false);
+    $this->form_validation->set_rules("code","* Code","trim|xss_clean");
+    $this->form_validation->set_rules("name_th_p","* ชื่อภาษาไทย","trim|xss_clean");
+    $this->form_validation->set_rules("name_en_p","* ชื่อภาษาอังกฤษ","trim|xss_clean");
+    $this->form_validation->set_rules("geography_id","* ภูมิภาค","trim|xss_clean");
+    $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
+
+    if ($this->form_validation->run()) {
+      $save_data['code'] = $this->input->post('code',true);
+      $save_data['name_th_p'] = $this->input->post('name_th_p',true);
+      $save_data['name_en_p'] = $this->input->post('name_en_p',true);
+      $save_data['geography_id'] = $this->input->post('geography_id',true);
+
+      $this->model->insert($save_data);
+
+      set_message("success",cclang("notif_save"));
+      $json['redirect'] = url("provinces");
+      $json['success'] = true;
+    }else {
+      foreach ($_POST as $key => $value) {
+        $json['alert'][$key] = form_error($key);
+      }
+    }
+
+    $this->response($json);
+  }
+}
+
+function update($id)
+{
+  $this->is_allowed('provinces_update');
+  if ($row = $this->model->find(dec_url($id))) {
+    $this->template->set_title(cclang("update")." ".$this->title);
+    $data = array('action' => url("provinces/update_action/$id"),
+                  'code' => set_value("code", $row->code),
+                  'name_th_p' => set_value("name_th_p", $row->name_th_p),
+                  'name_en_p' => set_value("name_en_p", $row->name_en_p),
+                  'geography_id' => set_value("geography_id", $row->geography_id),
+                  );
+    $this->template->view("update",$data);
+  }else {
+    $this->error404();
+  }
+}
+
+function update_action($id)
+{
+  if($this->input->is_ajax_request()){
+    if (!is_allowed('provinces_update')) {
+      show_error("Access Permission", 403,'403::Access Not Permission');
+      exit();
+    }
+
+    $json = array('success' => false);
+    $this->form_validation->set_rules("code","* Code","trim|xss_clean");
+    $this->form_validation->set_rules("name_th_p","* ชื่อภาษาไทย","trim|xss_clean");
+    $this->form_validation->set_rules("name_en_p","* ชื่อภาษาอังกฤษ","trim|xss_clean");
+    $this->form_validation->set_rules("geography_id","* ภูมิภาค","trim|xss_clean");
+    $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
+
+    if ($this->form_validation->run()) {
+      $save_data['code'] = $this->input->post('code',true);
+      $save_data['name_th_p'] = $this->input->post('name_th_p',true);
+      $save_data['name_en_p'] = $this->input->post('name_en_p',true);
+      $save_data['geography_id'] = $this->input->post('geography_id',true);
+
+      $save = $this->model->change(dec_url($id), $save_data);
+
+      set_message("success",cclang("notif_update"));
+
+      $json['redirect'] = url("provinces");
+      $json['success'] = true;
+    }else {
+      foreach ($_POST as $key => $value) {
+        $json['alert'][$key] = form_error($key);
+      }
+    }
+
+    $this->response($json);
+  }
+}
 
 function delete($id)
 {

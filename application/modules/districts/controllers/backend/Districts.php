@@ -7,7 +7,7 @@
 /*| website : https://1.20.167.69/ */
 /*| youtube : https://www.youtube.com/channel/UCQMpYmqbXlUBEJ_z3XPupdA */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By cangsalak Generator 24/04/2023 10:13*/
+/*| Generate By cangsalak Generator 24/04/2023 11:02*/
 /*| Please DO NOT modify this information*/
 
 
@@ -45,10 +45,9 @@ function json()
     foreach ($list as $row) {
         $rows = array();
                 $rows[] = $row->id;
-                $rows[] = $row->zip_code;
-                $rows[] = $row->name_th;
-                $rows[] = $row->name_en;
-                $rows[] = $row->name_th;
+                $rows[] = $row->name_th_d;
+                $rows[] = $row->name_en_d;
+                $rows[] = $row->name_th_A;
         
         $rows[] = '
                   <div class="btn-group" role="group" aria-label="Basic example">
@@ -95,9 +94,9 @@ function detail($id)
     $this->template->set_title("Detail ".$this->title);
     $data = array(
           "zip_code" => $row->zip_code,
-          "name_th" => $row->name_th,
-          "name_en" => $row->name_en,
-          "amphure_id" => $row->name_th,
+          "name_th_d" => $row->name_th_d,
+          "name_en_d" => $row->name_en_d,
+          "amphure_id" => $row->name_th_A,
     );
     $this->template->view("view",$data);
   }else{
@@ -111,8 +110,8 @@ function add()
   $this->template->set_title(cclang("add")." ".$this->title);
   $data = array('action' => url("districts/add_action"),
                   'zip_code' => set_value("zip_code"),
-                  'name_th' => set_value("name_th"),
-                  'name_en' => set_value("name_en"),
+                  'name_th_d' => set_value("name_th_d"),
+                  'name_en_d' => set_value("name_en_d"),
                   'amphure_id' => set_value("amphure_id"),
                   );
   $this->template->view("add",$data);
@@ -127,16 +126,16 @@ function add_action()
     }
 
     $json = array('success' => false);
-    $this->form_validation->set_rules("zip_code","* รหัสไปรษณีย์","trim|xss_clean");
-    $this->form_validation->set_rules("name_th","* ชื่อภาษาไทย","trim|xss_clean");
-    $this->form_validation->set_rules("name_en","* ชื่อภาษาอังกฤษ","trim|xss_clean");
+    $this->form_validation->set_rules("zip_code","* Zip code","trim|xss_clean");
+    $this->form_validation->set_rules("name_th_d","* ชื่อภาษาไทย","trim|xss_clean");
+    $this->form_validation->set_rules("name_en_d","* ชื่อภาษาอังกฤษ","trim|xss_clean");
     $this->form_validation->set_rules("amphure_id","* อำเภอ","trim|xss_clean");
     $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
     if ($this->form_validation->run()) {
       $save_data['zip_code'] = $this->input->post('zip_code',true);
-      $save_data['name_th'] = $this->input->post('name_th',true);
-      $save_data['name_en'] = $this->input->post('name_en',true);
+      $save_data['name_th_d'] = $this->input->post('name_th_d',true);
+      $save_data['name_en_d'] = $this->input->post('name_en_d',true);
       $save_data['amphure_id'] = $this->input->post('amphure_id',true);
 
       $this->model->insert($save_data);
@@ -161,8 +160,8 @@ function update($id)
     $this->template->set_title(cclang("update")." ".$this->title);
     $data = array('action' => url("districts/update_action/$id"),
                   'zip_code' => set_value("zip_code", $row->zip_code),
-                  'name_th' => set_value("name_th", $row->name_th),
-                  'name_en' => set_value("name_en", $row->name_en),
+                  'name_th_d' => set_value("name_th_d", $row->name_th_d),
+                  'name_en_d' => set_value("name_en_d", $row->name_en_d),
                   'amphure_id' => set_value("amphure_id", $row->amphure_id),
                   );
     $this->template->view("update",$data);
@@ -180,16 +179,16 @@ function update_action($id)
     }
 
     $json = array('success' => false);
-    $this->form_validation->set_rules("zip_code","* รหัสไปรษณีย์","trim|xss_clean");
-    $this->form_validation->set_rules("name_th","* ชื่อภาษาไทย","trim|xss_clean");
-    $this->form_validation->set_rules("name_en","* ชื่อภาษาอังกฤษ","trim|xss_clean");
+    $this->form_validation->set_rules("zip_code","* Zip code","trim|xss_clean");
+    $this->form_validation->set_rules("name_th_d","* ชื่อภาษาไทย","trim|xss_clean");
+    $this->form_validation->set_rules("name_en_d","* ชื่อภาษาอังกฤษ","trim|xss_clean");
     $this->form_validation->set_rules("amphure_id","* อำเภอ","trim|xss_clean");
     $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
     if ($this->form_validation->run()) {
       $save_data['zip_code'] = $this->input->post('zip_code',true);
-      $save_data['name_th'] = $this->input->post('name_th',true);
-      $save_data['name_en'] = $this->input->post('name_en',true);
+      $save_data['name_th_d'] = $this->input->post('name_th_d',true);
+      $save_data['name_en_d'] = $this->input->post('name_en_d',true);
       $save_data['amphure_id'] = $this->input->post('amphure_id',true);
 
       $save = $this->model->change(dec_url($id), $save_data);

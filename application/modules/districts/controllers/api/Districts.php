@@ -7,7 +7,7 @@
   /*| website : https://1.20.167.69/ */
   /*| youtube : https://www.youtube.com/channel/UCQMpYmqbXlUBEJ_z3XPupdA */
   /*| --------------------------------------------------------------------------*/
-  /*| Generate By m-code thailand สร้างเมื่อ 24/04/2023 10:13*/
+  /*| Generate By m-code thailand สร้างเมื่อ 24/04/2023 11:02*/
   /*| Please DO NOT modify this information*/
 
 require(APPPATH.'/libraries/REST_Controller.php');
@@ -42,16 +42,16 @@ require(APPPATH.'/libraries/REST_Controller.php');
         }
 
         $json = array('success' => false);
-                $this->form_validation->set_rules("zip_code","* รหัสไปรษณีย์","trim|xss_clean");
-                    $this->form_validation->set_rules("name_th","* ชื่อภาษาไทย","trim|xss_clean");
-                    $this->form_validation->set_rules("name_en","* ชื่อภาษาอังกฤษ","trim|xss_clean");
+                $this->form_validation->set_rules("zip_code","* Zip code","trim|xss_clean");
+                    $this->form_validation->set_rules("name_th_d","* ชื่อภาษาไทย","trim|xss_clean");
+                    $this->form_validation->set_rules("name_en_d","* ชื่อภาษาอังกฤษ","trim|xss_clean");
                     $this->form_validation->set_rules("amphure_id","* อำเภอ","trim|xss_clean");
                 $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
         if ($this->form_validation->run()) {
                   $save_data['zip_code'] = $this->input->post('zip_code',true);
-                      $save_data['name_th'] = $this->input->post('name_th',true);
-                      $save_data['name_en'] = $this->input->post('name_en',true);
+                      $save_data['name_th_d'] = $this->input->post('name_th_d',true);
+                      $save_data['name_en_d'] = $this->input->post('name_en_d',true);
                       $save_data['amphure_id'] = $this->input->post('amphure_id',true);
         
           $save = $this->model->change(dec_url($this->uri->segment(3)), $save_data);
@@ -78,16 +78,16 @@ require(APPPATH.'/libraries/REST_Controller.php');
         }
 
         $json = array('success' => false);
-                $this->form_validation->set_rules("zip_code","* รหัสไปรษณีย์","trim|xss_clean");
-                    $this->form_validation->set_rules("name_th","* ชื่อภาษาไทย","trim|xss_clean");
-                    $this->form_validation->set_rules("name_en","* ชื่อภาษาอังกฤษ","trim|xss_clean");
+                $this->form_validation->set_rules("zip_code","* Zip code","trim|xss_clean");
+                    $this->form_validation->set_rules("name_th_d","* ชื่อภาษาไทย","trim|xss_clean");
+                    $this->form_validation->set_rules("name_en_d","* ชื่อภาษาอังกฤษ","trim|xss_clean");
                     $this->form_validation->set_rules("amphure_id","* อำเภอ","trim|xss_clean");
                 $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
         if ($this->form_validation->run()) {
                   $save_data['zip_code'] = $this->input->post('zip_code',true);
-                      $save_data['name_th'] = $this->input->post('name_th',true);
-                      $save_data['name_en'] = $this->input->post('name_en',true);
+                      $save_data['name_th_d'] = $this->input->post('name_th_d',true);
+                      $save_data['name_en_d'] = $this->input->post('name_en_d',true);
                       $save_data['amphure_id'] = $this->input->post('amphure_id',true);
         
           $this->model->insert($save_data);

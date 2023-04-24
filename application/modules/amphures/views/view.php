@@ -12,14 +12,14 @@
         </tr>
         <tr>
           <td>ชื่อภาษาไทย</td>
-          <td><?=$name_th?></td>
+          <td><?=$name_th_A?></td>
         </tr>
         <tr>
           <td>ชื่อภาษาอังกฤษ</td>
-          <td><?=$name_en?></td>
+          <td><?=$name_en_A?></td>
         </tr>
         <tr>
-          <td>Province id</td>
+          <td>จังหวัด</td>
           <td><?=$province_id?></td>
         </tr>
         </table>

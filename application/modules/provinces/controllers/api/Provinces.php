@@ -7,14 +7,14 @@
   /*| website : https://1.20.167.69/ */
   /*| youtube : https://www.youtube.com/channel/UCQMpYmqbXlUBEJ_z3XPupdA */
   /*| --------------------------------------------------------------------------*/
-  /*| Generate By m-code thailand สร้างเมื่อ 24/04/2023 09:58*/
+  /*| Generate By m-code thailand สร้างเมื่อ 24/04/2023 11:10*/
   /*| Please DO NOT modify this information*/
 
 require(APPPATH.'/libraries/REST_Controller.php');
 
     class Provinces extends REST_Controller{
 
-    private $title = "Provinces";
+    private $title = "จังหวัด";
 
 
     public function __construct()
@@ -42,10 +42,18 @@ require(APPPATH.'/libraries/REST_Controller.php');
         }
 
         $json = array('success' => false);
-            $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
+                $this->form_validation->set_rules("code","* Code","trim|xss_clean");
+                    $this->form_validation->set_rules("name_th_p","* ชื่อภาษาไทย","trim|xss_clean");
+                    $this->form_validation->set_rules("name_en_p","* ชื่อภาษาอังกฤษ","trim|xss_clean");
+                    $this->form_validation->set_rules("geography_id","* ภูมิภาค","trim|xss_clean");
+                $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
         if ($this->form_validation->run()) {
-    
+                  $save_data['code'] = $this->input->post('code',true);
+                      $save_data['name_th_p'] = $this->input->post('name_th_p',true);
+                      $save_data['name_en_p'] = $this->input->post('name_en_p',true);
+                      $save_data['geography_id'] = $this->input->post('geography_id',true);
+        
           $save = $this->model->change(dec_url($this->uri->segment(3)), $save_data);
 
           set_message("success",cclang("notif_update"));
@@ -70,10 +78,18 @@ require(APPPATH.'/libraries/REST_Controller.php');
         }
 
         $json = array('success' => false);
-            $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
+                $this->form_validation->set_rules("code","* Code","trim|xss_clean");
+                    $this->form_validation->set_rules("name_th_p","* ชื่อภาษาไทย","trim|xss_clean");
+                    $this->form_validation->set_rules("name_en_p","* ชื่อภาษาอังกฤษ","trim|xss_clean");
+                    $this->form_validation->set_rules("geography_id","* ภูมิภาค","trim|xss_clean");
+                $this->form_validation->set_error_delimiters('<i class="error text-danger" style="font-size:11px">','</i>');
 
         if ($this->form_validation->run()) {
-    
+                  $save_data['code'] = $this->input->post('code',true);
+                      $save_data['name_th_p'] = $this->input->post('name_th_p',true);
+                      $save_data['name_en_p'] = $this->input->post('name_en_p',true);
+                      $save_data['geography_id'] = $this->input->post('geography_id',true);
+        
           $this->model->insert($save_data);
 
           set_message("success",cclang("notif_save"));

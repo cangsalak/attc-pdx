@@ -8,7 +8,7 @@
 /*| instagram : # */
 /*| youtube : https://www.youtube.com/channel/UCQMpYmqbXlUBEJ_z3XPupdA */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 24/04/2023 10:02*/
+/*| Generate By M-CRUD Generator 24/04/2023 11:04*/
 /*| Please DO NOT modify this information*/
 
 
@@ -16,9 +16,9 @@ class Amphures_model extends MY_Model{
 
   private $table        = "amphures";
   private $primary_key  = "id";
-  private $column_order = array('id', 'name_th', 'name_en', 'province_id');
-  private $order        = array('amphures.id'=>"DESC");
-  private $select       = "amphures.id,amphures.id,amphures.name_th,amphures.name_en,amphures.province_id";
+  private $column_order = array('id', 'code', 'name_th_A', 'name_en_A', 'province_id');
+  private $order        = array('amphures.code'=>"ASC");
+  private $select       = "amphures.id,amphures.id,amphures.code,amphures.name_th_A,amphures.name_en_A,amphures.province_id";
 
 public function __construct()
 	{
@@ -44,14 +44,14 @@ public function __construct()
           $this->db->like("amphures.code", $this->input->post("code"));
         }
 
-    if($this->input->post("name_th"))
+    if($this->input->post("name_th_A"))
         {
-          $this->db->like("amphures.name_th", $this->input->post("name_th"));
+          $this->db->like("amphures.name_th_A", $this->input->post("name_th_A"));
         }
 
-    if($this->input->post("name_en"))
+    if($this->input->post("name_en_A"))
         {
-          $this->db->like("amphures.name_en", $this->input->post("name_en"));
+          $this->db->like("amphures.name_en_A", $this->input->post("name_en_A"));
         }
 
     if($this->input->post("province_id"))
@@ -98,7 +98,9 @@ public function __construct()
 
     public function _get_join()
     {
-      $this->db->select("provinces.name_th");
+      $this->db->select("districts.name_th_d");
+      $this->db->join("districts","districts.id = amphures.code","left");
+      $this->db->select("provinces.name_th_p");
       $this->db->join("provinces","provinces.id = amphures.province_id","left");
     }
 

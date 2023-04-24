@@ -6,36 +6,36 @@
       </div>
       <div class="card-body">
           <form action="<?=$action?>" id="form" autocomplete="off">
-
+          
           <div class="form-group">
-            <label>Zip code</label>
-            <input type="number" class="form-control form-control-sm" placeholder="Zip code" name="zip_code" id="zip_code">
+            <label>Code</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Code" name="code" id="code" value="<?=$code?>">
           </div>
-
+        
           <div class="form-group">
             <label>ชื่อภาษาไทย</label>
-            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" name="name_th_d" id="name_th_d">
+            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" name="name_th_p" id="name_th_p" value="<?=$name_th_p?>">
           </div>
-
+        
           <div class="form-group">
             <label>ชื่อภาษาอังกฤษ</label>
-            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" name="name_en_d" id="name_en_d">
+            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" name="name_en_p" id="name_en_p" value="<?=$name_en_p?>">
           </div>
-
+        
           <div class="form-group">
-            <label>อำเภอ</label>
+            <label>ภูมิภาค</label>
             <!--
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?=is_select("amphures","amphure_id","id","name_th_A");?>
+            <?=is_select("geographies","geography_id","id","name","$geography_id");?>
           </div>
-
-          <input type="hidden" name="submit" value="add">
+        
+          <input type="hidden" name="submit" value="update">
 
           <div class="text-right">
             <a href="<?=url($this->uri->segment(2))?>" class="btn btn-sm btn-danger"><?=cclang("cancel")?></a>
-            <button type="submit" id="submit"  class="btn btn-sm btn-primary"><?=cclang("save")?></button>
+            <button type="submit" id="submit"  class="btn btn-sm btn-primary"><?=cclang("update")?></button>
           </div>
         </form>
       </div>

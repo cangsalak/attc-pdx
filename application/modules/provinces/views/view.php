@@ -11,15 +11,15 @@
           <td><?=$code?></td>
         </tr>
         <tr>
-          <td>Name th</td>
-          <td><?=$name_th?></td>
+          <td>ชื่อภาษาไทย</td>
+          <td><?=$name_th_p?></td>
         </tr>
         <tr>
-          <td>Name en</td>
-          <td><?=$name_en?></td>
+          <td>ชื่อภาษาอังกฤษ</td>
+          <td><?=$name_en_p?></td>
         </tr>
         <tr>
-          <td>Geography id</td>
+          <td>ภูมิภาค</td>
           <td><?=$geography_id?></td>
         </tr>
         </table>

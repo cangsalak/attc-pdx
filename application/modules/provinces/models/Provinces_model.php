@@ -8,7 +8,7 @@
 /*| instagram : # */
 /*| youtube : https://www.youtube.com/channel/UCQMpYmqbXlUBEJ_z3XPupdA */
 /*| --------------------------------------------------------------------------*/
-/*| Generate By M-CRUD Generator 24/04/2023 09:58*/
+/*| Generate By M-CRUD Generator 24/04/2023 11:10*/
 /*| Please DO NOT modify this information*/
 
 
@@ -16,9 +16,9 @@ class Provinces_model extends MY_Model{
 
   private $table        = "provinces";
   private $primary_key  = "id";
-  private $column_order = array('id', 'name_th', 'name_en', 'geography_id');
-  private $order        = array('provinces.id'=>"DESC");
-  private $select       = "provinces.id,provinces.id,provinces.name_th,provinces.name_en,provinces.geography_id";
+  private $column_order = array('id', 'code', 'name_th_p', 'name_en_p', 'geography_id');
+  private $order        = array('provinces.code'=>"ASC");
+  private $select       = "provinces.id,provinces.id,provinces.code,provinces.name_th_p,provinces.name_en_p,provinces.geography_id";
 
 public function __construct()
 	{
@@ -44,14 +44,14 @@ public function __construct()
           $this->db->like("provinces.code", $this->input->post("code"));
         }
 
-    if($this->input->post("name_th"))
+    if($this->input->post("name_th_p"))
         {
-          $this->db->like("provinces.name_th", $this->input->post("name_th"));
+          $this->db->like("provinces.name_th_p", $this->input->post("name_th_p"));
         }
 
-    if($this->input->post("name_en"))
+    if($this->input->post("name_en_p"))
         {
-          $this->db->like("provinces.name_en", $this->input->post("name_en"));
+          $this->db->like("provinces.name_en_p", $this->input->post("name_en_p"));
         }
 
     if($this->input->post("geography_id"))

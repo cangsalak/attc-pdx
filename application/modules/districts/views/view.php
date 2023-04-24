@@ -7,16 +7,16 @@
       <div class="card-body">
         <table class="table table-bordered table-striped">
         <tr>
-          <td>รหัสไปรษณีย์</td>
+          <td>Zip code</td>
           <td><?=$zip_code?></td>
         </tr>
         <tr>
           <td>ชื่อภาษาไทย</td>
-          <td><?=$name_th?></td>
+          <td><?=$name_th_d?></td>
         </tr>
         <tr>
           <td>ชื่อภาษาอังกฤษ</td>
-          <td><?=$name_en?></td>
+          <td><?=$name_en_d?></td>
         </tr>
         <tr>
           <td>อำเภอ</td>

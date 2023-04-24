@@ -6,6 +6,7 @@
       </div>
       <div class="card-body">
         <div class="mb-2">
+                <a href="<?=url("provinces/add")?>" class="btn btn-sm btn-success btn-icon-text"><i class="fa fa-file btn-icon-prepend"></i><?=cclang("add_new")?></a>
                 <button type="button" id="reload" class="btn btn-sm btn-info-2 btn-icon-text"><i class="mdi mdi-backup-restore btn-icon-prepend"></i><?=cclang("reload")?></button>
                 <a href="<?=url("provinces/filter/")?>" id="filter-show" class="btn btn-sm btn-primary btn-icon-text"><i class="mdi mdi-magnify btn-icon-prepend"></i><?=cclang("Filter")?></a>
               </div>
@@ -13,19 +14,15 @@
         <form autocomplete="off" class="content-filter">
           <div class="row">
             <div class="form-group col-md-6">
-                        <!--
-                          app_helper.php - methode is_select
-                          is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
-                        --->
-                <?=is_select_filter("amphures","code","id","code","Code");?>
+              <input type="text" id="code" class="form-control form-control-sm" placeholder="Code" />
             </div>
 
             <div class="form-group col-md-6">
-              <input type="text" id="name_th" class="form-control form-control-sm" placeholder="Name th" />
+              <input type="text" id="name_th_p" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" />
             </div>
 
             <div class="form-group col-md-6">
-              <input type="text" id="name_en" class="form-control form-control-sm" placeholder="Name en" />
+              <input type="text" id="name_en_p" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" />
             </div>
 
             <div class="form-group col-md-6">
@@ -33,7 +30,7 @@
                           app_helper.php - methode is_select
                           is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
                         --->
-                <?=is_select_filter("geographies","geography_id","id","name","Geography id");?>
+                <?=is_select_filter("geographies","geography_id","id","name","ภูมิภาค");?>
             </div>
 
             <div class="col-md-12">
@@ -46,10 +43,11 @@
           <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
               <tr class="text-center">
-                                    <th><?=cclang("ลำดับ")?></th>
-                                      <th><?=cclang("Name th")?></th>
-                                      <th><?=cclang("Name en")?></th>
-                                      <th><?=cclang("Geography id")?></th>
+                                    <th><?=cclang("Id")?></th>
+                                      <th><?=cclang("Code")?></th>
+                                      <th><?=cclang("ชื่อภาษาไทย")?></th>
+                                      <th><?=cclang("ชื่อภาษาอังกฤษ")?></th>
+                                      <th><?=cclang("ภูมิภาค")?></th>
                   
                 <th>#</th>
               </tr>
@@ -88,8 +86,8 @@ var table;
           "type": "POST",
           "data":function(data){
               data.code = $("#code").val();
-              data.name_th = $("#name_th").val();
-              data.name_en = $("#name_en").val();
+              data.name_th_p = $("#name_th_p").val();
+              data.name_en_p = $("#name_en_p").val();
               data.geography_id = $("#geography_id").val();
               }
             },
@@ -117,18 +115,23 @@ var table;
             "orderable": false
           },
 
+					{
+            "targets": 4,
+            "orderable": false
+          },
+
         {
             "className": "text-center",
             "orderable": false,
-            "targets": 4
+            "targets": 5
         },
       ],
     });
 
   $("#reload").click(function(){
   $("#code").val("");
-  $("#name_th").val("");
-  $("#name_en").val("");
+  $("#name_th_p").val("");
+  $("#name_en_p").val("");
   $("#geography_id").val("");
   table.ajax.reload();
   });

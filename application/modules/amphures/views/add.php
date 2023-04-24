@@ -8,27 +8,31 @@
           <form action="<?=$action?>" id="form" autocomplete="off">
 
           <div class="form-group">
-            <label>Zip code</label>
-            <input type="number" class="form-control form-control-sm" placeholder="Zip code" name="zip_code" id="zip_code">
-          </div>
-
-          <div class="form-group">
-            <label>ชื่อภาษาไทย</label>
-            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" name="name_th_d" id="name_th_d">
-          </div>
-
-          <div class="form-group">
-            <label>ชื่อภาษาอังกฤษ</label>
-            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" name="name_en_d" id="name_en_d">
-          </div>
-
-          <div class="form-group">
-            <label>อำเภอ</label>
+            <label>Code</label>
             <!--
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?=is_select("amphures","amphure_id","id","name_th_A");?>
+            <?=is_select("districts","code","id","name_th_d");?>
+          </div>
+
+          <div class="form-group">
+            <label>ชื่อภาษาไทย</label>
+            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" name="name_th_A" id="name_th_A">
+          </div>
+
+          <div class="form-group">
+            <label>ชื่อภาษาอังกฤษ</label>
+            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" name="name_en_A" id="name_en_A">
+          </div>
+
+          <div class="form-group">
+            <label>จังหวัด</label>
+            <!--
+              app_helper.php - methode is_select
+              is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
+            --->
+            <?=is_select("provinces","province_id","id","name_th_p");?>
           </div>
 
           <input type="hidden" name="submit" value="add">

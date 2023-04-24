@@ -8,18 +8,18 @@
           <form action="<?=$action?>" id="form" autocomplete="off">
           
           <div class="form-group">
-            <label>รหัสไปรษณีย์</label>
-            <input type="number" class="form-control form-control-sm" placeholder="รหัสไปรษณีย์" name="zip_code" id="zip_code" value="<?=$zip_code?>">
+            <label>Zip code</label>
+            <input type="number" class="form-control form-control-sm" placeholder="Zip code" name="zip_code" id="zip_code" value="<?=$zip_code?>">
           </div>
         
           <div class="form-group">
             <label>ชื่อภาษาไทย</label>
-            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" name="name_th" id="name_th" value="<?=$name_th?>">
+            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" name="name_th_d" id="name_th_d" value="<?=$name_th_d?>">
           </div>
         
           <div class="form-group">
             <label>ชื่อภาษาอังกฤษ</label>
-            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" name="name_en" id="name_en" value="<?=$name_en?>">
+            <input type="text" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" name="name_en_d" id="name_en_d" value="<?=$name_en_d?>">
           </div>
         
           <div class="form-group">
@@ -28,7 +28,7 @@
               app_helper.php - methode is_select
               is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
             --->
-            <?=is_select("amphures","amphure_id","id","name_th","$amphure_id");?>
+            <?=is_select("amphures","amphure_id","id","name_th_A","$amphure_id");?>
           </div>
         
           <input type="hidden" name="submit" value="update">

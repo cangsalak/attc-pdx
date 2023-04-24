@@ -6,6 +6,7 @@
       </div>
       <div class="card-body">
         <div class="mb-2">
+                <a href="<?=url("amphures/add")?>" class="btn btn-sm btn-success btn-icon-text"><i class="fa fa-file btn-icon-prepend"></i><?=cclang("add_new")?></a>
                 <button type="button" id="reload" class="btn btn-sm btn-info-2 btn-icon-text"><i class="mdi mdi-backup-restore btn-icon-prepend"></i><?=cclang("reload")?></button>
                 <a href="<?=url("amphures/filter/")?>" id="filter-show" class="btn btn-sm btn-primary btn-icon-text"><i class="mdi mdi-magnify btn-icon-prepend"></i><?=cclang("Filter")?></a>
               </div>
@@ -13,15 +14,19 @@
         <form autocomplete="off" class="content-filter">
           <div class="row">
             <div class="form-group col-md-6">
-              <input type="text" id="code" class="form-control form-control-sm" placeholder="Code" />
+                        <!--
+                          app_helper.php - methode is_select
+                          is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
+                        --->
+                <?=is_select_filter("districts","code","id","name_th_d","Code");?>
             </div>
 
             <div class="form-group col-md-6">
-              <input type="text" id="name_th" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" />
+              <input type="text" id="name_th_A" class="form-control form-control-sm" placeholder="ชื่อภาษาไทย" />
             </div>
 
             <div class="form-group col-md-6">
-              <input type="text" id="name_en" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" />
+              <input type="text" id="name_en_A" class="form-control form-control-sm" placeholder="ชื่อภาษาอังกฤษ" />
             </div>
 
             <div class="form-group col-md-6">
@@ -29,7 +34,7 @@
                           app_helper.php - methode is_select
                           is_select("table", "attribute`id & name`", "value", "label", "entry_value`optional`");
                         --->
-                <?=is_select_filter("provinces","province_id","id","name_th","Province id");?>
+                <?=is_select_filter("provinces","province_id","id","name_th_p","จังหวัด");?>
             </div>
 
             <div class="col-md-12">
@@ -42,10 +47,11 @@
           <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
               <tr class="text-center">
-                                    <th><?=cclang("ลำดับ")?></th>
+                                    <th><?=cclang("Id")?></th>
+                                      <th><?=cclang("Code")?></th>
                                       <th><?=cclang("ชื่อภาษาไทย")?></th>
                                       <th><?=cclang("ชื่อภาษาอังกฤษ")?></th>
-                                      <th><?=cclang("Province id")?></th>
+                                      <th><?=cclang("จังหวัด")?></th>
                   
                 <th>#</th>
               </tr>
@@ -84,8 +90,8 @@ var table;
           "type": "POST",
           "data":function(data){
               data.code = $("#code").val();
-              data.name_th = $("#name_th").val();
-              data.name_en = $("#name_en").val();
+              data.name_th_A = $("#name_th_A").val();
+              data.name_en_A = $("#name_en_A").val();
               data.province_id = $("#province_id").val();
               }
             },
@@ -113,18 +119,23 @@ var table;
             "orderable": false
           },
 
+					{
+            "targets": 4,
+            "orderable": false
+          },
+
         {
             "className": "text-center",
             "orderable": false,
-            "targets": 4
+            "targets": 5
         },
       ],
     });
 
   $("#reload").click(function(){
   $("#code").val("");
-  $("#name_th").val("");
-  $("#name_en").val("");
+  $("#name_th_A").val("");
+  $("#name_en_A").val("");
   $("#province_id").val("");
   table.ajax.reload();
   });
