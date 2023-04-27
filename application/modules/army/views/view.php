@@ -36,7 +36,7 @@
         </tr>
       <tr>
         <td>วันเกิด</td>
-        <td><?=$birthday != "" ? date('d-m-Y',strtotime($birthday)):""?></td>
+          <td><?=DateThai($birthday) != "" ? DateThai($birthday):""?></td>
       </tr>
         <tr>
           <td>เลขประจำตัวทหาร</td>
@@ -44,7 +44,7 @@
         </tr>
       <tr>
         <td>ประจำการเมื่อ</td>
-        <td><?=$stationed != "" ? date('d-m-Y',strtotime($stationed)):""?></td>
+          <td><?=DateThai($stationed) != "" ? DateThai($stationed):""?></td>
       </tr>
         <tr>
           <td>รุ่นปี</td>
@@ -112,7 +112,7 @@
         </tr>
       <tr>
         <td>ขึ้นทะเบียน</td>
-        <td><?=$registration_date != "" ? date('d-m-Y',strtotime($registration_date)):""?></td>
+          <td><?=DateThai($registration_date) != "" ? DateThai($registration_date):""?></td>
       </tr>
         <tr>
           <td>เชื่อชาติ</td>
@@ -212,11 +212,11 @@
         </tr>
         <tr>
           <td>สร้างเมื่อ</td>
-          <td><?=$a_created_at != "" ? date('d-m-Y H:i',strtotime($a_created_at)):""?></td>
+          <td><?=DateThai($a_created_at) != "" ? DateThai($a_created_at):""?></td>
         </tr>
         <tr>
           <td>แก้ไขเมื่อ</td>
-          <td><?=$a_updated_at != "" ? date('d-m-Y H:i',strtotime($a_updated_at)):""?></td>
+          <td><?=DateThai($a_updated_at) != "" ? DateThai($a_updated_at):""?></td>
         </tr>
         </table>
 

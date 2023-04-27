@@ -51,7 +51,7 @@ function json()
                 $rows[] = $row->a_lname;
                 $rows[] = $row->a_armyid;
                 $rows[] = $row->af_sname;
-                $rows[] = $row->email;
+                $rows[] = '<a href="mailto:'.$row->email.'">'.$row->email.'</a>';
         
         $rows[] = '
                   <div class="btn-group" role="group" aria-label="Basic example">
@@ -90,20 +90,61 @@ function filter()
     $this->template->view("filter",[],false);
   }
 }
+public function armytype()
+{
+  
+}
 
 function detail($id)
 {
   $this->is_allowed('army_detail');
     if ($row = $this->model->get_detail(dec_url($id))) {
     $this->template->set_title("Detail ".$this->title);
+    if($row->gender == 1){
+      $gender = 'ชาย';
+    }else if($row->gender == 2){
+      $gender = 'หญิง';
+    }else{
+      $gender = 'ไม่ระบุ';
+    }
+
+    $armytype = [
+      '1' => 'นายทหารสัญญาบัตร',
+      '2' => 'นายทหารประทวน',
+      '3' => 'พนักงานราชการ',
+      '4' => 'ทหารกองประจำการ',
+      '5' => 'พลฯ อาสา',
+      '6' => 'ไม่ระบุ'
+    ];
+    foreach ($armytype as $key => $value) {
+      if($row->army_type == $key){
+        $army_type = $value;
+      }
+    }
+
+    $blood_group = [
+      'a' => 'กรุ๊ปเลือด เอ',
+      'B' => 'กรุ๊ปเลือด บี',
+      'o' => 'กรุ๊ปเลือด โอ',
+      'ab' => 'กรุ๊ปเลือด เอ-บี'
+    ];
+    foreach ($blood_group as $key => $value) {
+      if($row->blood_group == $key){
+        $blood_group = $value;
+      }
+    }
+
+
+
+    $data['type'] = $this->armytype();
     $data = array(
           "rank_r_id" => $row->r_fname,
-          "army_type" => $row->army_type,
+          "army_type" => $army_type,
           "image" => $row->image,
           "a_fname" => $row->a_fname,
           "a_lname" => $row->a_lname,
           "a_nickname" => $row->a_nickname,
-          "a_pid" => $row->a_pid,
+          "a_pid" => isValidNationalId($row->a_pid),
           "birthday" => $row->birthday,
           "a_armyid" => $row->a_armyid,
           "stationed" => $row->stationed,
@@ -114,8 +155,8 @@ function detail($id)
           "educational" => $row->educational,
           "weight" => $row->weight,
           "height" => $row->height,
-          "blood_group" => $row->blood_group,
-          "gender" => $row->gender,
+          "blood_group" => $blood_group,
+          "gender" => $gender,
           "skin" => $row->skin,
           "shape" => $row->shape,
           "defect" => $row->defect,

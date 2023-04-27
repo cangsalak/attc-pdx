@@ -345,8 +345,23 @@ public function __construct()
     {
       $this->db->select("rank.r_fname");
       $this->db->join("rank","rank.r_id = army.rank_r_id","left");
+
       $this->db->select("affiliation.af_sname");
       $this->db->join("affiliation","affiliation.af_id = army.affiliation_af_id","left");
+      
+
+      // ตำแหน่ง
+      $this->db->select("position.po_name");
+      $this->db->join("position","position.po_id = army.position_po_id","left");
+      // ตำบล
+      $this->db->select("districts.name_th_d");
+      $this->db->join("districts","districts.id = army.district","left");
+      // อำเภอ
+      $this->db->select("amphures.name_th_A");
+      $this->db->join("amphures","amphures.id = army.districts","left");
+      // จังหวัด
+      $this->db->select("provinces.name_th_p");
+      $this->db->join("provinces","provinces.id = army.province","left");
     }
 
     public function get_detail($id)
