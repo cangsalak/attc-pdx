@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="card text-white mb-3">
+    <div class="card mb-3">
       <div class="card-body card-header">
         <h5><?=cclang("welcome",profile("name"))?></h5>
-        <p class="card-description text-white">
+        <p class="card-description">
           <?=cclang("welcome_description")?>
         </p>
       </div>
@@ -15,14 +15,14 @@
   <div class="col-lg-12 card-columns mt-3">
 
     <?php if (is_allowed("dashboard__view_profile_user")): ?>
-        <div class="card text-white bg-primary mb-3" style="min-height:363px">
-          <div class="card-body text-white">
-            <h3 class="card-title text-white"><?=cclang("profile_user")?></h3>
+        <div class="card mb-3" style="min-height:363px">
+          <div class="card-body">
+            <h3 class="card-title"><?=cclang("profile_user")?></h3>
             <div class="text-center">
               <?=imgView(profile("photo"),"img-thumbnail","border-radius:100%;height:100px;width:100px;margin-bottom:10px;border:3px solid #c2c2c2")?>
             </div>
 
-            <table class="table-profile text-white">
+            <table class="table-profile">
               <tr>
                 <td><?=cclang('Name');?></td>
                 <td>: <?=profile("name")?></td>
@@ -59,7 +59,7 @@
 
 
     <?php if (is_allowed("dashboard_view_total_user")): ?>
-        <div class="card text-white bg-success mb-3">
+        <div class="card text-white mb-3">
           <div class="card-body">
             <p class="card-title text-md-center text-xl-left"><?=cclang("total_user")?></p>
             <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center" style="color: #686868;">
@@ -83,7 +83,7 @@
     <?php endif; ?>
 
     <?php if (is_allowed("dashboard_view_total_permission")): ?>
-        <div class="card text-white bg-warning mb-3">
+        <div class="card text-white mb-3">
           <div class="card-body">
             <p class="card-title text-md-center text-xl-left"><?=cclang("Total Permission")?></p>
             <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center" style="color: #686868;">
@@ -95,7 +95,7 @@
     <?php endif; ?>
 
     <?php if (is_allowed("dashboard_view_total_filemanager")): ?>
-        <div class="card text-white bg-info mb-3">
+        <div class="card text-white mb-3">
           <div class="card-body">
             <p class="card-title text-md-center text-xl-left"><?=cclang("Total Filemanager")?></p>
             <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center" style="color: #686868;">

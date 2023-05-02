@@ -27,6 +27,11 @@ $lang['show'] = 'แสดง';
 $lang['not show'] = 'ไม่แสดง';
 
 
+$lang['show Color'] = 'แสดงสีหน้าเว็บ';
+$lang['Theme Color'] = 'แสดงสี';
+$lang['Show Footer'] = 'แสดงข้อมูลสุดขอบหน้า';
+
+
 // user
 $lang['profile_user'] = "โปร์ไฟล์ผู้ใช้งาน";
 $lang['profile_user_name'] = "ชื่อ";

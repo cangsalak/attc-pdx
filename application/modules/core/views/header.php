@@ -38,7 +38,7 @@
     $color = substr(md5(setting("color_theme")), 0, 6); // Get the first 6 characters of the MD5 hash
     $color_master = setting("color_theme"); // Get the first 6 characters of the MD5 hash
   ?>
-<?php if(setting('theme_show') == 'true'):?>
+<?php if(setting('theme_show') == 'Y'):?>
   <style media="screen">
     *{
       font-family: 'Sarabun', sans-serif;

@@ -54,12 +54,12 @@
             <tr>
               <td class="table-title"><?=cclang("show Color")?></td>
               <td>
-                <a href="javascript:void(0);" id="theme_show" data-url="<?=url("setting/update_action")?>" data-type="select" data-value="<?=setting('theme_show')?>" data-pk="64" class="editable editable-click" title="<?=cclang("update")?>"><?=setting('theme_show') == 'true' ? cclang('show'):cclang('not show')?></a>
+                <a href="javascript:void(0);" id="theme_show" data-url="<?=url("setting/update_action")?>" data-type="select" data-value="<?=setting('theme_show')?>" data-pk="64" class="editable editable-click" title="<?=cclang("update")?>"><?=setting('theme_show') == 'Y' ? cclang('show'):cclang('not show')?></a>
               </td>
             </tr>
             
 
-            <?php if(setting('theme_show')=='true'):?>
+            <?php if(setting('theme_show')=='Y'):?>
             <tr>
               <td class="table-title"><?=cclang("Theme Color")?></td>
               <td>
@@ -76,7 +76,7 @@
             </tr>
 
           </table>
-          <?php if(setting('theme_show')=='true'):?>
+          <?php if(setting('theme_show')=='Y'):?>
               <style>
                 .div1 {
                   align-self: center;
@@ -211,8 +211,8 @@
     $('#theme_show').editable({
       inputclass: 'form-control-sm',
       source: [
-  			{value: 'true', text: '<?= cclang('show');?>'},
-  			{value: 'false', text: '<?= cclang("not show");?>'}
+  			{value: 'Y', text: '<?= cclang('show');?>'},
+  			{value: 'N', text: '<?= cclang("not show");?>'}
   		],
       success: function(data) {
        if (data.success != true) {
