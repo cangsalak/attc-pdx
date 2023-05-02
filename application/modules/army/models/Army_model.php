@@ -17,7 +17,7 @@ class Army_model extends MY_Model{
   private $table        = "army";
   private $primary_key  = "a_id";
   private $column_order = array('a_id', 'rank_r_id', 'image', 'a_fname', 'a_lname', 'a_armyid', 'affiliation_af_id', 'email');
-  private $order        = array('army.a_id'=>"DESC");
+  private $order        = array('army.a_id'=>"ASC");
   private $select       = "army.a_id,army.a_id,army.rank_r_id,army.image,army.a_fname,army.a_lname,army.a_armyid,army.affiliation_af_id,army.email";
 
 public function __construct()

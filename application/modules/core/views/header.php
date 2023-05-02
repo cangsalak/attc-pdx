@@ -38,6 +38,7 @@
     $color = substr(md5(setting("color_theme")), 0, 6); // Get the first 6 characters of the MD5 hash
     $color_master = setting("color_theme"); // Get the first 6 characters of the MD5 hash
   ?>
+<?php if(setting('theme_show') == 'true'):?>
   <style media="screen">
     *{
       font-family: 'Sarabun', sans-serif;
@@ -63,6 +64,8 @@
       font-weight: 100!important;
     }
   </style>
+<?php endif;?>
+
   <!-- plugins:js -->
   <script src="<?=base_url()?>_temp/backend/vendors/js/vendor.bundle.base.js"></script>
   <script src="<?=base_url()?>_temp/backend/vendors/sweetalert/sweetalert.min.js"></script>

@@ -100,6 +100,7 @@ var table;
         "columnDefs": [
 
 					{
+            "className": "text-center",
             "targets": 0,
             "orderable": false
           },

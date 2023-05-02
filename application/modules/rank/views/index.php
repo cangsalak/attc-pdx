@@ -31,7 +31,7 @@
           <table class="table table-bordered table-striped" id="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
               <tr class="text-center">
-                                    <th><?=cclang("No")?></th>
+                                    <th><?=cclang("Id")?></th>
                                       <th><?=cclang("คำย่อ")?></th>
                                       <th><?=cclang("คำเต็ม")?></th>
                   
@@ -80,6 +80,7 @@ var table;
         "columnDefs": [
 
 					{
+            "className": "text-center",
             "targets": 0,
             "orderable": false
           },

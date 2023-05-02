@@ -52,32 +52,47 @@
 
             
             <tr>
+              <td class="table-title"><?=cclang("show Color")?></td>
+              <td>
+                <a href="javascript:void(0);" id="theme_show" data-url="<?=url("setting/update_action")?>" data-type="select" data-value="<?=setting('theme_show')?>" data-pk="64" class="editable editable-click" title="<?=cclang("update")?>"><?=setting('theme_show') == 'true' ? cclang('show'):cclang('not show')?></a>
+              </td>
+            </tr>
+            
+
+            <?php if(setting('theme_show')=='true'):?>
+            <tr>
               <td class="table-title"><?=cclang("Theme Color")?></td>
               <td>
                 <a href="javascript:void(0);" id="color_theme" data-url="<?=url("setting/update_action")?>" data-type="select" data-value="<?=setting('color_theme')?>" data-pk="62" class="editable editable-click" title="<?=cclang("update")?>"><?=setting('color_theme');?></a>
               </td>
             </tr>
+            <?php endif;?>
 
             <tr>
-            <td class="table-title"><?=cclang("Show Footer")?></td>
-            <td>
-              <a href="javascript:void(0);" id="show_footer" data-url="<?=url("setting/update_action")?>" data-type="select" data-value="<?=setting('show_footer')?>" data-pk="63" class="editable editable-click" title="<?=cclang("update")?>"><?=setting('show_footer') == 'Y' ? cclang('Yes'):cclang('No')?></a>
-            </td>
-          </tr>
+              <td class="table-title"><?=cclang("Show Footer")?></td>
+              <td>
+                <a href="javascript:void(0);" id="show_footer" data-url="<?=url("setting/update_action")?>" data-type="select" data-value="<?=setting('show_footer')?>" data-pk="63" class="editable editable-click" title="<?=cclang("update")?>"><?=setting('show_footer') == 'Y' ? cclang('Yes'):cclang('No')?></a>
+              </td>
+            </tr>
 
           </table>
-          <style>
-                  .div1 {
-                      align-self: center;
-                      margin-top:10px;
-                      margin-right:50%;
-                      width: 100%;
-                      height: 70px;    
-                      padding: 60px;
-                      background:<?=setting("color_theme")?>;
-                  }
-                </style>
-                  <div class="div1 text-center text-white"><p>ตัวอย่างสี</p></div>
+          <?php if(setting('theme_show')=='true'):?>
+              <style>
+                .div1 {
+                  align-self: center;
+                  margin-top:10px;
+                  margin-right:50%;
+                  width: 100%;
+                  height: 70px;    
+                  padding: 60px;
+                  background:<?=setting("color_theme")?>;
+                }
+              </style>
+                <div class="div1 text-center text-white">
+                  <p>ตัวอย่างสี</p>
+                </div>
+          <?php endif; ?>
+
         <?php else: ?>
           <?php $this->load->view("core/error403") ?>
         <?php endif; ?>
@@ -183,6 +198,21 @@
   			{value: 'LightSeaGreen', text: 'LightSeaGreen'},
   			{value: 'LightCyan', text: 'LightCyan'},
   			{value: 'black', text: 'black'}
+  		],
+      success: function(data) {
+       if (data.success != true) {
+         return data.msg;
+       }
+      location.reload(); // แทรกฟังก์ชันเพื่อ refesh หน้าเว็บ
+     }
+    });
+
+    
+    $('#theme_show').editable({
+      inputclass: 'form-control-sm',
+      source: [
+  			{value: 'true', text: '<?= cclang('show');?>'},
+  			{value: 'false', text: '<?= cclang("not show");?>'}
   		],
       success: function(data) {
        if (data.success != true) {

@@ -411,6 +411,7 @@ var table;
         "columnDefs": [
 
 					{
+            "className": "text-center",
             "targets": 0,
             "orderable": false
           },
@@ -421,6 +422,7 @@ var table;
           },
 
 					{
+            "className": "text-center",
             "targets": 2,
             "orderable": false
           },
@@ -436,6 +438,7 @@ var table;
           },
 
 					{
+            "className": "text-center",
             "targets": 5,
             "orderable": false
           },
@@ -446,6 +449,7 @@ var table;
           },
 
 					{
+            "className": "text-center",
             "targets": 7,
             "orderable": false
           },
