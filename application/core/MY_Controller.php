@@ -243,6 +243,25 @@ function is_allowed($permission = null, $redirect = true)
   }
 }
 
+function is_allowed_personal($permission = null, $redirect = true)
+{
+  $ID_USER = $this->session->id_user;
+  if ($permission == $ID_USER) {
+    die("parameter `is_allowed` not empty");
+  }else {
+    // $this->load->library("auth");
+    $this->auth->created_permission($permission);
+    if ($this->auth->is_allowed($permission)) {
+      return true;
+    }else {
+      if ($redirect) {
+        redirect(url("core/notPermission"));
+      }
+      return false;
+    }
+  }
+}
+
   //CEK PASSWORD FORM VALIDATION
 function _cek_password($str)
 {

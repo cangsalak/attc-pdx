@@ -22,6 +22,7 @@ class Login_model extends CI_Model{
                               auth_user.token,
                               auth_user.is_active,
                               auth_user.is_delete,
+                              auth_user.army_id,
                               auth_user.created")
                     ->from("auth_user")
                     ->where("auth_user.email","$email")

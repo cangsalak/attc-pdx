@@ -21,8 +21,8 @@ class Dashboard extends Backend{
 
   function index()
   {
-    $this->template->set_title("Dashboard");
-    $this->template->view("index");
+      $this->template->set_title("Dashboard");
+      $this->template->view("index");
   }
 
   function test()
@@ -48,5 +48,38 @@ class Dashboard extends Backend{
     $this->template->view("about",[],false);
   }
 
+  function update()
+  {
+    $this->template->view("update",array(),false);
+  }
+
+
+  function update_action()
+  {
+    if ($this->input->is_ajax_request()) {
+          $json = array('success'=>false, 'alert'=>array());
+          $this->form_validation->set_rules("army_id","เลขประจำตัวทหาร","trim|xss_clean|required");
+          $this->form_validation->set_error_delimiters('<span class="error text-danger" style="font-size:11px">','</span>');
+          if ($this->form_validation->run()) {
+            $update = array(
+              'army_id' => $this->input->post('army_id'),
+              'modified' => date("Y-m-d H:i")
+            );
+
+            $this->model->get_update("auth_user", $update, ["id_user" => sess("id_user")]);
+
+            $json['alert'] = "คุณได้ทำการเพิ่มเลขประจำตัวทหารเรียบร้อย";
+            $json['success'] =  true;
+            
+            
+          }else {
+            foreach ($_POST as $key => $value)
+              {
+                $json['alert'][$key] = form_error($key);
+              }
+          }
+          return $this->response($json);
+      }
+  }
 
 }

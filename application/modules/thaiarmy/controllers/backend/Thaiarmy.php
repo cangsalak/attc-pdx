@@ -11,9 +11,9 @@
 /*| Please DO NOT modify this information*/
 
 
-class Army extends Backend{
+class Thaiarmy extends Backend{
 
-private $title = "ทหาร";
+private $title = "กำลังพลภายในหน่วย";
 
 
 public function __construct()
@@ -27,10 +27,116 @@ public function __construct()
 
 function index()
 {
+  $data['list'] = $this->model->get_datatables();
   $this->is_allowed('army_list');
   $this->template->set_title($this->title);
-  $this->template->view("index");
+  $this->template->view("index",$data);
 }
+
+
+function personal($id)
+{
+  $this->is_allowed_personal('army_personal');
+    if ($row = $this->model->get_detail(dec_url($id))) {
+    $this->template->set_title("รายละเอียดบุคคล ".$row->a_fname);
+    if($row->gender == 1){
+      $gender = 'ชาย';
+    }else if($row->gender == 2){
+      $gender = 'หญิง';
+    }else{
+      $gender = 'ไม่ระบุ';
+    }
+
+    $armytype = [
+      '1' => 'นายทหารสัญญาบัตร',
+      '2' => 'นายทหารประทวน',
+      '3' => 'พนักงานราชการ',
+      '4' => 'ทหารกองประจำการ',
+      '5' => 'พลฯ อาสา',
+      '6' => 'ไม่ระบุ'
+    ];
+    foreach ($armytype as $key => $value) {
+      if($row->army_type == $key){
+        $army_type = $value;
+      }
+    }
+
+    $blood_group = [
+      'a' => 'กรุ๊ปเลือด เอ',
+      'B' => 'กรุ๊ปเลือด บี',
+      'o' => 'กรุ๊ปเลือด โอ',
+      'ab' => 'กรุ๊ปเลือด เอ-บี'
+    ];
+    foreach ($blood_group as $key => $value) {
+      if($row->blood_group == $key){
+        $blood_group = $value;
+      }
+    }
+
+
+
+    $data['type'] = $this->armytype();
+    $data = array(
+          "rank_r_id" => $row->r_fname,
+          "army_type" => $army_type,
+          "image" => $row->image,
+          "a_fname" => $row->a_fname,
+          "a_lname" => $row->a_lname,
+          "a_nickname" => $row->a_nickname,
+          "a_pid" => isValidNationalId($row->a_pid),
+          "birthday" => $row->birthday,
+          "a_armyid" => $row->a_armyid,
+          "stationed" => $row->stationed,
+          "model_year" => $row->model_year,
+          "turns" => $row->turns,
+          "position_po_id" => $row->po_name,
+          "affiliation_af_id" => $row->af_sname,
+          "educational" => $row->educational,
+          "weight" => $row->weight,
+          "height" => $row->height,
+          "blood_group" => $blood_group,
+          "gender" => $gender,
+          "skin" => $row->skin,
+          "shape" => $row->shape,
+          "defect" => $row->defect,
+          "congenital_disease" => $row->congenital_disease,
+          "e_name" => $row->e_name,
+          "e_surname" => $row->e_surname,
+          "these" => $row->these,
+          "registration_date" => $row->registration_date,
+          "ethnicity" => $row->ethnicity,
+          "nationality" => $row->nationality,
+          "religion" => $row->religion,
+          "address" => $row->address,
+          "district" => $row->name_th_d,
+          "districts" => $row->name_th_A,
+          "province" => $row->name_th_p,
+          "email" => $row->email,
+          "status" => $row->status,
+          "detail" => $row->detail,
+          "father_name" => $row->father_name,
+          "father_surname" => $row->father_surname,
+          "father_age" => $row->father_age,
+          "father_occupation" => $row->father_occupation,
+          "father_status" => $row->father_status,
+          "mother_name" => $row->mother_name,
+          "mother_surname" => $row->mother_surname,
+          "mother_age" => $row->mother_age,
+          "mother_occupation" => $row->mother_occupation,
+          "mother_status" => $row->mother_status,
+          "wife_name" => $row->wife_name,
+          "wife_surname" => $row->wife_surname,
+          "wife_occupation" => $row->wife_occupation,
+          "wife_age" => $row->wife_age,
+          "a_created_at" => $row->a_created_at,
+          "a_updated_at" => $row->a_updated_at,
+    );
+    $this->template->view("view",$data);
+  }else{
+    $this->error404();
+  }
+}
+
 
 function json()
 {
@@ -45,8 +151,8 @@ function json()
     foreach ($list as $row) {
         $rows = array();
                 $rows[] = $row->a_id;
-                $rows[] = is_image($row->image);
                 $rows[] = $row->r_fname;
+                $rows[] = is_image($row->image);
                 $rows[] = $row->a_fname;
                 $rows[] = $row->a_lname;
                 $rows[] = $row->a_armyid;
